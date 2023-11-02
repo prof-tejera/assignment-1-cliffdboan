@@ -4,7 +4,7 @@ export function useRunTimers(timerType, minuteId, secondId, startId, pauseId, ro
     const [selectedMinute, setSelectedMinute] = useState(0);
     const [selectedSecond, setSelectedSecond] = useState(0);
     const [timerRunning, setTimerRunning] = useState(false);
-    const [numRounds, setNumRounds] = useState(0);
+    const [numRounds, setNumRounds] = useState(1);
     const [currentRound, setCurrentRound] = useState(1);
 
     const startTimer = () => {
@@ -41,13 +41,34 @@ export function useRunTimers(timerType, minuteId, secondId, startId, pauseId, ro
                 } else if (selectedMinute > 0) {
                     setSelectedMinute(selectedMinute - 1);
                     setSelectedSecond(59);
-                } else if (currentRound < numRounds) {
-                    setCurrentRound(currentRound + 1);
-                    setSelectedMinute(minCeiling);
-                    setSelectedSecond(secCeiling);
                 } else {
                     setTimerRunning(false);
                     clearInterval(intervalId);
+                }
+            }, 1000);
+        };
+
+        const runXyTimer = () => {
+            if (currentRound < numRounds) {
+                if (selectedMinute === 0 && selectedSecond === 0) {
+                    intervalId = setInterval(() => {
+                        setCurrentRound(currentRound + 1);
+                        setSelectedMinute(minCeiling);
+                        setSelectedSecond(secCeiling);
+                    }, 1000);
+
+                    return () => {
+                        clearInterval(intervalId)
+                    }
+                }
+            };
+
+            intervalId = setInterval(() => {
+                if (selectedSecond > 0) {
+                    setSelectedSecond(selectedSecond - 1);
+                } else if (selectedMinute > 0) {
+                    setSelectedMinute(selectedMinute - 1);
+                    setSelectedSecond(59);
                 }
             }, 1000);
         };
@@ -66,13 +87,7 @@ export function useRunTimers(timerType, minuteId, secondId, startId, pauseId, ro
             }, 1000);
         };
 
-        if (timerType === "xy") {
-            for (let i = 1; i <= numRounds; i++) {
-                runCountdownTimer();
-            }
-        };
-
-        if (timerType === "countdown" || timerType === "xy") {
+        if (timerType === "countdown") {
             if (timerRunning && (selectedMinute > 0 || selectedSecond > 0)) {
                 runCountdownTimer();
             } else {
@@ -94,11 +109,20 @@ export function useRunTimers(timerType, minuteId, secondId, startId, pauseId, ro
             return () => {
                 clearInterval(intervalId);
             };
+        } else if (timerType === "xy") {
+            if (timerRunning) {
+                runXyTimer();
+            } else {
+                setTimerRunning(false);
+                clearInterval(intervalId);
+            }
+
+            return () => {
+                clearInterval(intervalId);
+            };
         };
 
-    }, [timerRunning, selectedMinute, selectedSecond, currentRound, minuteId, secondId, timerType]);
-
-
+    }, [timerRunning, selectedMinute, selectedSecond, numRounds, currentRound, minuteId, secondId, timerType]);
 
     useEffect(() => {
         const setMin = document.getElementById(minuteId);
@@ -150,6 +174,6 @@ export function useRunTimers(timerType, minuteId, secondId, startId, pauseId, ro
         pauseTimer,
         resetTimer,
         selectedMinute: selectedMinute,
-        selectedSecond: selectedSecond
+        selectedSecond: selectedSecond,
     };
 };
