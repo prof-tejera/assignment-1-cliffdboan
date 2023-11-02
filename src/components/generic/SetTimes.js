@@ -8,10 +8,10 @@ for (let i = 0; i <= 60; i+=5) {
     secArr.push(i);
 };
 
-const SetTimes = ({ minId, secId }) => {
+const SetTimes = ({ minId, secId, hideMins }) => {
     return (
         <div>
-            <select id={minId} defaultValue={0}>
+            <select id={minId} defaultValue={0} style={{ display: hideMins ? 'none' : '' }}>
                 {minuteArr.map((num) => {
                     return <option key={num + "_min"} value={num}>{num}</option>
                 })}

@@ -1,6 +1,6 @@
 import Button from "../generic/Button.js"
 import SetTimes from "../generic/SetTimes.js";
-import { useRunTimers } from "../../utils/hooks.js";
+import { useRunTimers } from "../../utils/mainHook.js";
 
 const Countdown = () => {
     /**

@@ -1,6 +1,6 @@
 import Button from "../generic/Button";
 import SetTimes from "../generic/SetTimes";
-import { useRunTimers } from "../../utils/hooks";
+import { useRunTimers } from "../../utils/mainHook.js";
 
 const XY = () => {
     // const numRounds = parseInt(document.getElementById("rounds").value);

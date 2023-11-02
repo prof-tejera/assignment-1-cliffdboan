@@ -1,7 +1,7 @@
 // import { useEffect, useState } from "react";
 import Button from "../generic/Button";
 import SetTimes from "../generic/SetTimes";
-import { useRunTimers } from "../../utils/hooks";
+import { useRunTimers } from "../../utils/mainHook.js";
 
 const Stopwatch = () => {
     /**
