@@ -8,6 +8,7 @@ const Tabata = () => {
     const [workTime, setWorkTime] = useState(0);
     const [restTime, setRestTime] = useState(0);
     const [currentTime, setCurrentTime] = useState(workTime);
+    const [isRestPhase, setIsRestPhase] = useState(false);
 
     const startTimer = () => {
         if (!timerRunning) {
@@ -24,7 +25,7 @@ const Tabata = () => {
     const resetTimer = () => {
         setTimerRunning(false);
         setCurrentTime(workTime);
-        setRounds(0);
+        setRounds(1);
     };
 
     useEffect(() => {
@@ -34,17 +35,27 @@ const Tabata = () => {
             intervalId = setInterval(() => {
                 if (currentTime > 0) {
                     setCurrentTime(currentTime - 1);
-                } else if (workTime === currentTime) {
-                    setCurrentTime(restTime);
                 } else {
-                    setCurrentTime(workTime);
-                    setRounds(rounds - 1);
+                    if (isRestPhase) {
+                        setCurrentTime(workTime);
+                        setIsRestPhase(false);
+                        setRounds(rounds - 1);
+                    } else {
+                        if (rounds > 1) {
+                            setCurrentTime(restTime);
+                            setIsRestPhase(true);
+                        } else {
+                            setTimerRunning(false);
+                            setCurrentTime(workTime);
+                            setIsRestPhase(false);
+                        }
+                    }
                 }
             }, 1000);
         }
 
         return () => clearInterval(intervalId);
-    }, [timerRunning, rounds, currentTime, workTime, restTime])
+    }, [timerRunning, rounds, currentTime, workTime, restTime, isRestPhase])
 
     useEffect(() => {
         const workSecs = document.getElementById("work-sec");
@@ -54,7 +65,9 @@ const Tabata = () => {
         const pauseBtn = document.getElementById("tab-pause");
 
         const handleWorkSelect = (e) => {
-            setWorkTime(parseInt(e.target.value));
+            const newWork = (parseInt(e.target.value));
+            setWorkTime(newWork);
+            setCurrentTime(newWork);
         };
 
         const handleRestSelect = (e) => {
@@ -78,14 +91,15 @@ const Tabata = () => {
             startBtn.removeEventListener("click", startTimer);
             pauseBtn.removeEventListener("click", pauseTimer);
         }
-    });
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <div className="countdown">
             <div className="clockface">
                 <span>
                     {currentTime}
-                    <br/>
+                    <br />
                     Sets Remaining: {rounds}
                 </span>
             </div>
