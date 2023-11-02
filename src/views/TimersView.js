@@ -8,15 +8,20 @@ import Tabata from "../components/timers/Tabata";
 
 const Timers = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 const Timer = styled.div`
+  height: 250px;
+  width: 250px;
+  border-radius: 360px;
   border: 1px solid gray;
   padding: 20px;
   margin: 10px;
   font-size: 1.5rem;
+  text-align: center;
 `;
 
 const TimerTitle = styled.div``;
