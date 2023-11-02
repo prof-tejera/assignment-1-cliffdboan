@@ -1,3 +1,5 @@
+import "./button.css";
+
 const Button = ({ value, onClick, id }) => {
     return (
         <div id={id}>

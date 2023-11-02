@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import './timersView.css'
 
 import Stopwatch from "../components/timers/Stopwatch";
 import Countdown from "../components/timers/Countdown";
@@ -14,17 +15,23 @@ const Timers = styled.div`
 `;
 
 const Timer = styled.div`
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   border-radius: 360px;
-  border: 1px solid gray;
+  border: 2.5px solid gray;
+  box-shadow: 3px 2px 11px 5px rgba(0,0,0,0.15);
   padding: 20px;
   margin: 10px;
   font-size: 1.5rem;
   text-align: center;
 `;
 
-const TimerTitle = styled.div``;
+const TimerTitle = styled.div`
+  font-size: 24px;
+  font-weight: bolder;
+  text-decoration: underline solid black;
+  color: #006622;
+`;
 
 const TimersView = () => {
   const timers = [

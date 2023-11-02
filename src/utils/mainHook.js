@@ -175,5 +175,6 @@ export function useRunTimers(timerType, minuteId, secondId, startId, pauseId, ro
         resetTimer,
         selectedMinute: selectedMinute,
         selectedSecond: selectedSecond,
+        currentRound: currentRound
     };
 };

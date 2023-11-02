@@ -17,18 +17,23 @@ const XY = () => {
         pauseTimer,
         resetTimer,
         selectedMinute,
-        selectedSecond
+        selectedSecond,
+        currentRound
          } = useRunTimers("xy", "xy-min", "xy-sec", "xy-start", "xy-pause", "xy-rnds");
 
     return (
         <div className="countdown">
-            <div className="clockface">
-                <span>
+            <div>
+                <span id="clockface">
                     {selectedMinute < 10 ? `0${selectedMinute}` : selectedMinute}
                     :{selectedSecond < 10 ? `0${selectedSecond}` : selectedSecond}
                 </span>
+                <br />
+                <span>
+                    Round: {currentRound}
+                </span>
             </div>
-            <div className="button-grid">
+            <div id="button-grid">
                 <Button id="xy-start" value="Start" onClick={startTimer} />
                 <Button id="xy-pause" value="Pause" onClick={pauseTimer} />
                 <Button id="xy-reset" value="Reset" onClick={resetTimer} />
@@ -37,7 +42,8 @@ const XY = () => {
                 <SetTimes minId="xy-min" secId="xy-sec" />
             </div>
             <div>
-                <select id="xy-rnds">
+                <label htmlFor="rnds"># Rounds: </label>
+                <select name="rnds" id="xy-rnds">
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>

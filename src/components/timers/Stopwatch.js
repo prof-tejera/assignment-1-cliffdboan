@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import Button from "../generic/Button";
 import SetTimes from "../generic/SetTimes";
 import { useRunTimers } from "../../utils/mainHook.js";
@@ -23,13 +22,13 @@ const Stopwatch = () => {
 
     return (
         <div className="stopwatch">
-            <div className="clockface">
-                <span>
+            <div>
+                <span id="clockface">
                     {selectedMinute < 10 ? `0${selectedMinute}` : selectedMinute}
                     :{selectedSecond < 10 ? `0${selectedSecond}` : selectedSecond}
                 </span>
             </div>
-            <div className="button-grid">
+            <div id="button-grid">
                 <Button id="sw-start" value="Start" onClick={startTimer} />
                 <Button id="sw-pause" value="Pause" onClick={pauseTimer} />
                 <Button id="sw-reset" value="Reset" onClick={resetTimer} />

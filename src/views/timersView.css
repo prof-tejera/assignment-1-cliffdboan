@@ -1,0 +1,12 @@
+#clockface {
+    border: 1.5px inset black;
+    padding: 2px;
+    height: 20px;
+    width: 150px;
+}
+
+#button-grid {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
