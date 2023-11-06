@@ -96,8 +96,8 @@ const Tabata = () => {
 
     return (
         <div className="countdown">
-            <div>
-                <span id="clockface">
+            <div id="clockface">
+                <span>
                     {currentTime}
                 </span>
                     <br />
@@ -109,8 +109,8 @@ const Tabata = () => {
                 <Button id="tab-reset" value="Reset" onClick={resetTimer} />
             </div>
             <div id="set-times">
-                <SetTimes secId="work-sec" hideMins={true} />
-                <SetTimes secId="rest-sec" hideMins={true} />
+                <SetTimes secId="work-sec" hideMins={true} work={true} />
+                <SetTimes secId="rest-sec" hideMins={true} rest={true} />
                 <label htmlFor="rounds"># Rounds: </label>
                 <select name="rounds" id="rounds">
                     <option value={1}>1</option>

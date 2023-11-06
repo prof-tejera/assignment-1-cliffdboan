@@ -22,8 +22,8 @@ const Stopwatch = () => {
 
     return (
         <div className="stopwatch">
-            <div>
-                <span id="clockface">
+            <div id="clockface">
+                <span>
                     {selectedMinute < 10 ? `0${selectedMinute}` : selectedMinute}
                     :{selectedSecond < 10 ? `0${selectedSecond}` : selectedSecond}
                 </span>

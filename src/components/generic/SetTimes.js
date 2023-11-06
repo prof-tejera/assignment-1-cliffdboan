@@ -8,7 +8,7 @@ for (let i = 0; i <= 60; i+=5) {
     secArr.push(i);
 };
 
-const SetTimes = ({ minId, secId, hideMins }) => {
+const SetTimes = ({ minId, secId, hideMins, work, rest }) => {
     return (
         <div>
             <label htmlFor="mins" style={{ display: hideMins ? 'none' : ''}}>Mins: </label>
@@ -18,7 +18,9 @@ const SetTimes = ({ minId, secId, hideMins }) => {
                 })}
             </select>
             <br style={{display: hideMins ? 'none' : ''}}/>
-            <label htmlFor="secs">Secs: </label>
+            <label htmlFor="secs" style={{ display: work ? 'none' : '' || rest ? 'none' : ''}}>Secs: </label>
+            <label htmlFor="secs" style={{ display: work ? '' : 'none'}}>Work Secs: </label>
+            <label htmlFor="secs" style={{ display: rest ? '' : 'none'}}>Rest Secs: </label>
             <select name="secs" id={secId} defaultValue={0}>
                 {secArr.map((sec) => {
                     return <option key={sec + "_sec"} value={sec}>{sec}</option>

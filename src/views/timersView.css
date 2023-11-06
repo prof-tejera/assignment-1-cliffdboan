@@ -1,8 +1,10 @@
 #clockface {
     border: 1.5px inset black;
+    color: black;
     padding: 2px;
-    height: 20px;
-    width: 150px;
+    width: 200px;
+    height: 60px;
+    background-color: #ffffff;
 }
 
 #button-grid {

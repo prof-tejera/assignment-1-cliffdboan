@@ -20,8 +20,8 @@ const Countdown = () => {
 
     return (
         <div className="countdown">
-            <div>
-                <span id="clockface">
+            <div id="clockface">
+                <span>
                     {selectedMinute < 10 ? `0${selectedMinute}` : selectedMinute}
                     :{selectedSecond < 10 ? `0${selectedSecond}` : selectedSecond}
                 </span>

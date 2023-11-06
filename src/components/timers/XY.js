@@ -3,7 +3,6 @@ import SetTimes from "../generic/SetTimes";
 import { useRunTimers } from "../../utils/mainHook.js";
 
 const XY = () => {
-    // const numRounds = parseInt(document.getElementById("rounds").value);
     /**
      * extract the returned functions and stated values from the custom hook this way
      * the functions can be called within the onClick prop and the state values can be
@@ -23,8 +22,8 @@ const XY = () => {
 
     return (
         <div className="countdown">
-            <div>
-                <span id="clockface">
+            <div id="clockface">
+                <span>
                     {selectedMinute < 10 ? `0${selectedMinute}` : selectedMinute}
                     :{selectedSecond < 10 ? `0${selectedSecond}` : selectedSecond}
                 </span>
